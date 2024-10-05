@@ -1,0 +1,19 @@
+node_modules
+
+# MacOS files
+.DS_Store
+
+# Log files
+npm-debug.log*
+
+# Env files
+.env*
+
+# Build files
+dist
+build
+
+nohup.out
+pid
+
+.env

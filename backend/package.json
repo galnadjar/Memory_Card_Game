@@ -1,0 +1,50 @@
+{
+  "name": "@pawza/backend",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.598.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.3.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.25",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.2"
+  },
+  "keywords": [],
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "check-tsc": "tsc -p ./tsconfig.build.json --noEmit",
+    "dev": "ts-node-dev ./src/index.ts",
+    "format": "biome format ./src --diagnostic-level=error",
+    "format:fix": "biome format ./src --write",
+    "lint": "eslint src --ext ts --max-warnings 0",
+    "lint:fix": "eslint src --ext ts --max-warnings 0 --fix",
+    "start": "node ./dist/index.js",
+    "watch-tsc": "tsc -p ./tsconfig.build.json --watch --noEmit"
+  },
+  "packageManager": "pnpm@9.12.0+sha512.4abf725084d7bcbafbd728bfc7bee61f2f791f977fd87542b3579dcb23504d170d46337945e4c66485cd12d588a0c0e570ed9c477e7ccdd8507cf05f3f92eaca"
+}

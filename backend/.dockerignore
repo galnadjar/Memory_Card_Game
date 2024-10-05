@@ -1,0 +1,15 @@
+node_modules
+dist
+.git*
+
+# Linter files
+.vscode
+.editorconfig
+.eslint*
+.prettier*
+biome*
+tsconfig.lint.json
+
+tsconfig.test.json
+
+README.md
