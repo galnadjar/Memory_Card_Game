@@ -22,6 +22,10 @@ COPY . .
 # Run the build script from package.json for pawza backend
 RUN pnpm build
 
+# delete dependencies
+RUN rm -rf node_modules
+RUN pnpm install --prod
+
 ## Runner ##
 FROM node:20-alpine3.18 as runner
 WORKDIR /usr/src/app
