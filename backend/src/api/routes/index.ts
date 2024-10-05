@@ -1,25 +1,40 @@
 import { Router } from 'express';
 
+import { HighScoreModel } from '../../models/highest-score';
+
 const indexRouter = Router();
 
-let highestScore: number | null = null;
-
 // POST endpoint to submit the score
-indexRouter.post('/submit-score', (req, res) => {
+indexRouter.post('/submit-score', async (req, res) => {
   const { score } = req.body;
 
   if (typeof score !== 'number') {
     return res.status(400).send('Invalid score');
   }
 
-  if (highestScore === null || score < highestScore) {
-    highestScore = score;
+  let highestScoreObj = await HighScoreModel.findOne({
+    ip: req.ip,
+  });
+
+  if (highestScoreObj === null || score < highestScoreObj.highScore) {
+    highestScoreObj = await HighScoreModel.findOneAndUpdate(
+      { ip: req.ip },
+      { ip: req.ip, highScore: score },
+      { upsert: true, new: true },
+    );
   }
 
-  return res.status(200).send({ message: 'Score submitted successfully', score, highestScore });
+  return res
+    .status(200)
+    .send({ message: 'Score submitted successfully', score, highestScore: highestScoreObj!.highScore });
 });
 
-// GET endpoint to retrieve the highest score
-indexRouter.get('/highest-score', (req, res) => res.status(200).send({ highestScore }));
+// GET highest score based on ip
+indexRouter.get('/highest-score', async (req, res) => {
+  const highestScoreObj = await HighScoreModel.findOne({
+    ip: req.ip,
+  });
+  return res.status(200).send({ highestScore: highestScoreObj?.highScore || null });
+});
 
 export { indexRouter };
