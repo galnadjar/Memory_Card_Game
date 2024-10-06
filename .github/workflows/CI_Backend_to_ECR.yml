@@ -36,5 +36,6 @@ jobs:
         ECR_REPOSITORY: memory_card_game
         IMAGE_TAG: memory_card_game_backend_image
       run: |
+        cd backend
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
